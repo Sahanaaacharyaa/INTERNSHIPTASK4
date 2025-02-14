@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #d7badf;
+            margin: 0;
+            text-align: center;
+            padding: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-evenly;
+            background: #dfdee0;
+            color: white;
+            padding: 15px;
+            height: 60px;
+            align-items: center;
+            position: relative;
+        }
+        .cart-icon {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .cart {
+            display: none;
+            border: 1px solid black;
+            padding: 10px;
+            width: 350px;
+            position: absolute;
+            right: 10px;
+            top: 60px;
+            background: rgb(236, 204, 232);
+            color: black;
+            z-index: 1000;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10%;
+            text-align: center;
+        }
+        .navbutton{
+            border:3px solid rgb(81, 11, 109);
+            height: 25px;
+            width: 150px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+           
+            background-color: #110814;
+            color: rgb(233, 222, 235);
+        }
+       
+        .navbutton:hover{
+            box-shadow:0 0 20px  rgb(67, 18, 73);
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:space-evenly;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+        .product {
+           
+            background: rgb(230, 223, 231);
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            width: 225px;
+            height:300px;
+            
+          
+            
+            
+        }
+        .product img {
+            width:100%;
+            height: 150px;
+            
+           
+        }
+        .product button {
+            background: #5b3972;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .product button:hover {
+            background: #ce21a8;
+        }
+        h2{
+            text-align: center;
+
+        }
+        .clearbutton{
+            background-color: #110814;
+            color: rgb(233, 222, 235);
+            height: 30px;
+            width: 90px;
+            border-radius:8%;
+            
+
+        }
+        .clearbutton:hover{
+            box-shadow: 0 0 20px black;
+        }
+        .remove-btn{
+            color: white;
+            height:30px;
+            border-radius: 8px;
+            background-color: #ce21a8;
+            box-shadow: 0 0 10px palevioletred;
+        }
+        .num{
+            background-color: #ecc2e9;
+            width :40px;
+            height:40px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            border-radius: 50%;
+            font-weight: 700;
+            color: #110814;
+            border: 2px solid black;
+        }
+        .cart li{
+            margin-top: 10px;
+            list-style-type: none;
+        }
+        .tot{
+            font-weight: 900;
+        }
+        @media only screen and (min-width:280px) and (max-width:1000px){
+            nav {
+            display: flex;
+            justify-content: space-evenly;
+            background: #dfdee0;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            height: 30px;
+            align-items: center;
+            position: relative;
+        }
+        .navbutton{
+            border:3px solid rgb(81, 11, 109);
+            height: 20px;
+            width: 50px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            border-radius: 10%;
+            font-size:5px;
+            background-color: #110814;
+            color: rgb(233, 222, 235);
+        }
+        .num{
+            background-color: #ecc2e9;
+            width :20px;
+            height:20px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            border-radius: 50%;
+            font-weight: 700;
+            color: #110814;
+            border: 2px solid black;
+        }.product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:space-evenly;
+            align-items: center;
+            padding: 10px;
+        }
+        .product {
+           
+           background: rgb(230, 223, 231);
+           padding: 0px 0px 0px 0px;
+           margin: 10px 0px 10px 25px;
+           
+           text-align: center;
+           width: 156px;
+           height:300px;
+           font-size: small;
+           
+         
+           
+           
+       }
+       .product img {
+           width:100%;
+           height: 150px;
+           
+          
+       }
+       
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbutton">Home</div>
+        <div class="navbutton">About us</div>
+        <div class="navbutton">Best deals</div>
+        <div class="navbutton">Shop</div>
+        <div class="navbutton cart-icon" onclick="toggleCart()">Cart 🛒 <span id="cart-count" class="num">0</span></div>
+        <div class="cart" id="cart">
+            <h3>Shopping Cart</h3>
+            <ul id="cart-items"></ul>
+            <p class="tot">Total: ₹<span id="total-price">0</span></p>
+            <button class="clearbutton" onclick="clearCart()">Clear Cart</button>
+        </div>
+    </nav>
+    <h2>&hearts; Explore our home decors &hearts;</h2>
+    <div class="product-list" id="product-list"></div>
+    <script>
+        let cart = [];
+        function toggleCart() {
+            let cartDiv = document.getElementById("cart");
+            if (cartDiv.style.display === "block") {
+                cartDiv.style.display = "none";
+            } else {
+                cartDiv.style.display = "block";
+            }
+        }
+        function addToCart(name, price) {
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i].name === name) {
+                    cart[i].quantity++;
+                    updateCart();
+                    return;
+                }
+            }
+            cart.push({ name: name, price: price, quantity: 1 });
+            updateCart();
+        }
+        function removeFromCart(name) {
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i].name === name) {
+                    if (cart[i].quantity > 1) {
+                        cart[i].quantity--;
+                    } else {
+                        cart.splice(i, 1);
+                    }
+                    updateCart();
+                    return;
+                }
+            }
+        }
+        function updateCart() {
+            
+            let cartItems = document.getElementById("cart-items");
+            let totalPrice = document.getElementById("total-price");
+            let cartCount = document.getElementById("cart-count");
+            cartItems.innerHTML = "";
+            let total = 0;
+            for (let i = 0; i < cart.length; i++) {
+                let li = document.createElement("li");
+                li.innerHTML = cart[i].name + " - ₹" + cart[i].price + " x " + cart[i].quantity +
+                    " <button class='remove-btn' onclick=\"removeFromCart('" + cart[i].name + "')\">Remove</button>";
+                cartItems.appendChild(li);
+                total += cart[i].price * cart[i].quantity;
+            }
+            totalPrice.innerText = total;
+            let count = 0;
+            for (let i = 0; i < cart.length; i++) {
+                count += cart[i].quantity;
+            }
+            cartCount.innerText = count;
+        }
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+        let productList = document.getElementById("product-list");
+        let products = [
+            { name: "Ruby Bloom Vase", price: 239, image: "images/product2.jpg" },
+            { name: "Peachy keen vase", price: 323, image: "images/product3.jpg" },
+            { name: "Harmony Vase", price: 452, image: "images/product4.jpg" },
+            { name: "Pastel Pot", price: 559, image: "images/product5.jpg" },
+            { name: "Reflections decor", price: 299, image: "images/product6.jpg" },
+            { name: "Home script", price: 499, image: "images/product7.jpg" },
+            { name: "Chairs and tables", price: 839, image: "images/product8.jpg" },
+            { name: "Dream Catcher", price: 623, image: "images/product9.jpg" },
+            { name: "Metal leaf ", price: 772, image: "images/product10.jpg" },
+            { name: "Pastel Paradise Pot", price: 559, image: "images/product11.jpg" },
+            { name: "Kids zone", price: 299, image: "images/product12.jpg" },
+            { name: "Lavendar beauty", price: 499, image: "images/product13.jpg" },
+            { name: "Cups and Vase", price: 323, image: "images/product14.jpg" },
+            { name: "Paint frame", price: 452, image: "images/product15.jpg" },
+            { name: "Home setup sets", price: 2559, image: "images/product16.jpg" },
+            { name: "Leaves decor", price: 249, image: "images/product17.jpg" }
+          
+        ];
+        for (let i = 0; i < products.length; i++) {
+            let div = document.createElement("div");
+            div.classList.add("product");
+            div.innerHTML = "<img src='" + products[i].image + "' alt='" + products[i].name + "'><h3>" + products[i].name + "</h3><p>₹" + products[i].price + "</p><button onclick=\"addToCart('" + products[i].name + "', " + products[i].price + ")\">Add to Cart</button>";
+            productList.appendChild(div);
+        }
+    </script>
+</body>
+</html>
