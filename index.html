@@ -10,17 +10,24 @@
             background: #d7badf;
             margin: 0;
             text-align: center;
-            padding: 0;
+            width: 100vw;
+            overflow-x: hidden; 
+            box-sizing: border-box;
+           
+            
         }
         nav {
             display: flex;
-            justify-content: space-evenly;
+            justify-content:space-around;
             background: #dfdee0;
             color: white;
-            padding: 15px;
+            padding: 10px;
             height: 60px;
+            width: 100%;
             align-items: center;
-            position: relative;
+          
+            overflow-x: hidden; 
+            box-sizing: border-box;
         }
         .cart-icon {
             cursor: pointer;
@@ -30,6 +37,7 @@
             display: none;
             border: 1px solid black;
             padding: 10px;
+            
             width: 350px;
             position: absolute;
             right: 10px;
@@ -44,9 +52,9 @@
         .navbutton{
             border:3px solid rgb(81, 11, 109);
             height: 25px;
-            width: 150px;
+            width: 8%;
             align-items: center;
-            justify-content: center;
+            justify-content:space-evenly;
             display: flex;
            
             background-color: #110814;
@@ -59,24 +67,30 @@
         .product-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content:space-evenly;
-            align-items: center;
-            text-align: center;
-            padding: 10px;
+            justify-content: space-evenly;
+            width: 100%; 
+            background-color: #f08fdb;
+            box-sizing: border-box;
+           
+           
+          
         }
         .product {
            
-            background: rgb(230, 223, 231);
+            background: rgb(233, 198, 238);
             padding: 10px;
-            margin: 10px;
+            margin: 20px;
+            
+           
             text-align: center;
-            width: 300px;
+            width: 20%;
             height:400px;
             
           
             
             
         }
+        
         .product img {
             width:100%;
             height: 200px;
@@ -98,6 +112,7 @@
             text-align: center;
 
         }
+        
         .clearbutton{
             background-color: #110814;
             color: rgb(233, 222, 235);
@@ -137,9 +152,10 @@
             font-weight: 900;
         }
         @media only screen and (min-width:280px) and (max-width:1000px){
+          
             nav {
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-around;
             background: #dfdee0;
             color: white;
             padding: 15px;
@@ -150,7 +166,7 @@
         }
         .navbutton{
             border:3px solid rgb(81, 11, 109);
-            height: 20px;
+            height: 15px;
             width: 50px;
             align-items: center;
             justify-content: center;
@@ -171,44 +187,45 @@
             font-weight: 700;
             color: #110814;
             border: 2px solid black;
-        }.product-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content:space-between;
-            align-items: center;
-            padding: 10px;
+        }
+        
+        
+        h2{
+            text-align: center;
+            margin-left: 15px;
+            font-size: 15px;
+
         }
         .product-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content:space-evenly;
-            align-items: center;
-            padding: 10px;
-        }
-        h2{
-            text-align: center;
-            margin-left: 30px;
-            font-size: 15px;
-
+            justify-content: space-evenly;
+            width: 100%; 
+            background-color: #f08fdb;
+            box-sizing: border-box;
+           
+           
+          
         }
         .product {
            
-           background: rgb(230, 223, 231);
-           padding: 10px 10px 10px 10px;
-           margin: 10px 0px 10px 25px;
+            background: rgb(233, 198, 238);
+            padding: 5px;
+            margin: 5px;
+            font-size: smaller;
            
-           text-align: center;
-           width: 300px;
-           height:325px;
-           font-size: small;
-           
-         
-           
-           
-       }
+            text-align: center;
+            width: 40%;
+            height:250px;
+            
+          
+            
+            
+        }
+        
        .product img {
            width:100%;
-           height: 200px;
+           height: 125px;
            
           
        }
@@ -231,7 +248,9 @@
         </div>
     </nav>
     <h2>&hearts; Explore our home decors &hearts;</h2>
+    <div class="product-content">
     <div class="product-list" id="product-list"></div>
+    </div>
     <script>
         let cart = [];
         function toggleCart() {
